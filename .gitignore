@@ -1,0 +1,41 @@
+# ==========================================
+# Git Ignore for KD Technologies Django Project
+# ==========================================
+
+# Environment variables & secrets (CRITICAL: Never commit API keys!)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Python Virtual Environments
+venv/
+env/
+ENV/
+backend/venv/
+.venv/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Django specific
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+media/
+
+# Logs & temp files
+*.log
+scratch/
+
+# IDE / Editor configs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+Thumbs.db

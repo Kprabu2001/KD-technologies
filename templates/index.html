@@ -1,0 +1,446 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="home">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        We Build Websites<br />
+        <span class="gradient-text">That Drive Results</span>
+      </h1>
+      <p class="hero-subtitle">
+        KD Technologies crafts scalable REST APIs, full-stack web apps, and
+        modern frontends using Python, Django, FastAPI, and React.js &mdash; from idea to production.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Start Your Project</a>
+        <a href="#portfolio" class="btn btn-outline">View Our Work</a>
+      </div>
+      <div class="hero-trust">
+        <span>&#10003; 100+ Projects Delivered</span>
+        <span>&#10003; 5-Star Rated</span>
+        <span>&#10003; Fast Turnaround</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== STATS ====== -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" data-target="120">0</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="95">0</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="5">0</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="99">0</div>
+          <div class="stat-label">% Satisfaction Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SERVICES ====== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">Our <span class="gradient-text">Services</span></h2>
+        <p class="section-subtitle">End-to-end digital solutions built with Python, FastAPI, Django, React.js &amp; PostgreSQL.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">&#x1F680;</div>
+          <h3>REST API Development</h3>
+          <p>Scalable, production-ready APIs built with FastAPI and Django REST Framework &mdash; with Swagger docs, JWT auth, and clean architecture.</p>
+          <ul class="service-list">
+            <li>FastAPI / Django DRF</li>
+            <li>JWT &amp; OAuth 2.0 Auth</li>
+            <li>Swagger / OpenAPI Docs</li>
+            <li>Microservices Architecture</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">&#x1F310;</div>
+          <h3>Full Stack Web Apps</h3>
+          <p>End-to-end web applications with a Python backend (Django/FastAPI) and a modern React.js frontend &mdash; deployed and production-ready.</p>
+          <ul class="service-list">
+            <li>Django + React.js</li>
+            <li>PostgreSQL &amp; SQLAlchemy</li>
+            <li>Docker Deployment</li>
+            <li>Nginx + Cloud Hosting</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">&#x1F3A8;</div>
+          <h3>Responsive Frontend</h3>
+          <p>Pixel-perfect, mobile-first frontends using React.js, Bootstrap, HTML, and CSS &mdash; fast, accessible, and beautifully designed.</p>
+          <ul class="service-list">
+            <li>React.js / HTML / CSS</li>
+            <li>Bootstrap &amp; Responsive Design</li>
+            <li>Interactive Dashboards</li>
+            <li>Component Libraries</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">&#x1F5C4;</div>
+          <h3>Database Design &amp; Integration</h3>
+          <p>Robust database design and management using PostgreSQL with SQLAlchemy ORM &mdash; optimized queries, migrations, and multi-tenant support.</p>
+          <ul class="service-list">
+            <li>PostgreSQL Schema Design</li>
+            <li>SQLAlchemy ORM</li>
+            <li>Query Optimization</li>
+            <li>Data Migrations</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">&#x1F510;</div>
+          <h3>Auth &amp; Security</h3>
+          <p>Secure multi-tenant authentication with JWT, OAuth 2.0, Google Login, Email OTP, and custom middleware for API protection.</p>
+          <ul class="service-list">
+            <li>JWT Access &amp; Refresh Tokens</li>
+            <li>Google OAuth 2.0</li>
+            <li>Email OTP Verification</li>
+            <li>Role-Based Authentication</li>
+            <li>Custom Middleware</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">&#x1F433;</div>
+          <h3>Deployment &amp; DevOps</h3>
+          <p>Containerized deployments with Docker and Nginx &mdash; reliable, scalable production environments with Git-based CI workflows.</p>
+          <ul class="service-list">
+            <li>Docker &amp; Docker Compose</li>
+            <li>Nginx Configuration</li>
+            <li>GitHub Version Control</li>
+            <li>Cloud Deployment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PORTFOLIO ====== -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">My Work</span>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        <p class="section-subtitle">Real-world projects built with Python, FastAPI, Django, React.js &amp; PostgreSQL.</p>
+      </div>
+      <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="webapp">Web Apps</button>
+        <button class="filter-btn" data-filter="api">APIs</button>
+        <button class="filter-btn" data-filter="security">Security</button>
+      </div>
+      <div class="portfolio-grid" id="portfolioGrid">
+        <div class="portfolio-card reveal" data-category="webapp">
+          <div class="portfolio-img" style="background: linear-gradient(135deg,#7c3aed,#06b6d4);">
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">Web App &middot; AI</span>
+              <h3>Resume Analyzer AI</h3>
+              <p>AI-powered resume scorer &amp; career coach with JD matching and chat interface.</p>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="p-tech">FastAPI &middot; PostgreSQL &middot; Streamlit &middot; Groq LLaMA 3.3</span>
+          </div>
+        </div>
+        <div class="portfolio-card reveal" data-category="security">
+          <div class="portfolio-img" style="background: linear-gradient(135deg,#dc2626,#f59e0b);">
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">Security System</span>
+              <h3>Ransomware Defense System</h3>
+              <p>Real-time file monitoring &amp; web dashboard to detect and prevent ransomware attacks.</p>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="p-tech">Python &middot; HTML &middot; CSS &middot; Bootstrap &middot; MySQL</span>
+          </div>
+        </div>
+        <div class="portfolio-card reveal" data-category="api">
+          <div class="portfolio-img" style="background: linear-gradient(135deg,#11998e,#38ef7d);">
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">REST API</span>
+              <h3>Multi-Tenant Auth API</h3>
+              <p>15+ secure REST API endpoints with JWT, Google OAuth, Email OTP &amp; custom middleware.</p>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="p-tech">FastAPI &middot; PostgreSQL &middot; JWT &middot; OAuth 2.0</span>
+          </div>
+        </div>
+        <div class="portfolio-card reveal" data-category="webapp">
+          <div class="portfolio-img" style="background: linear-gradient(135deg,#4facfe,#00f2fe);">
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">Full Stack</span>
+              <h3>Django Full Stack Platform</h3>
+              <p>Scalable web platform with Django backend, React frontend, and PostgreSQL database.</p>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="p-tech">Django &middot; React.js &middot; PostgreSQL &middot; Docker</span>
+          </div>
+        </div>
+        <div class="portfolio-card reveal" data-category="api">
+          <div class="portfolio-img" style="background: linear-gradient(135deg,#fa709a,#fee140);">
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">API &middot; Dashboard</span>
+              <h3>Analytics Dashboard</h3>
+              <p>Interactive data visualization dashboard with Streamlit and a FastAPI data backend.</p>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="p-tech">Streamlit &middot; FastAPI &middot; SQLAlchemy &middot; PostgreSQL</span>
+          </div>
+        </div>
+        <div class="portfolio-card reveal" data-category="webapp">
+          <div class="portfolio-img" style="background: linear-gradient(135deg,#43e97b,#38f9d7);">
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">Web App</span>
+              <h3>Responsive React Frontend</h3>
+              <p>Modern, responsive SPA built with React.js, Bootstrap, and REST API integration.</p>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="p-tech">React.js &middot; Bootstrap &middot; HTML &middot; CSS &middot; REST API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PROCESS ====== -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">How I Work</span>
+        <h2 class="section-title">My <span class="gradient-text">Process</span></h2>
+        <p class="section-subtitle">A proven 4-step approach that delivers clean, scalable code on time, every time.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Discovery &amp; Planning</h3>
+            <p>I start by understanding your business, goals, and target audience. I define the project scope, sitemap, and roadmap before writing a single line of code.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Design &amp; Prototype</h3>
+            <p>Beautiful wireframes and interactive prototypes are crafted first. You approve the look and feel before development begins &mdash; no surprises.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Development &amp; Testing</h3>
+            <p>Your project is built with clean, scalable code. Every feature is rigorously tested across devices and browsers for a flawless result.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3>Launch &amp; Support</h3>
+            <p>I deploy your site and provide full handover. Post-launch support ensures everything runs perfectly as your business grows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PRICING ====== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Investment</span>
+        <h2 class="section-title">Simple, Transparent <span class="gradient-text">Pricing</span></h2>
+        <p class="section-subtitle">No hidden fees. Choose the plan that fits your needs.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="pricing-badge">Starter</div>
+          <div class="pricing-price">
+            <span class="price-currency">&#8377;</span>
+            <span class="price-amount">15,000</span>
+          </div>
+          <p class="pricing-desc">Perfect for small businesses and personal brands needing an online presence.</p>
+          <ul class="pricing-features">
+            <li>&#10003; 5-Page Responsive Website</li>
+            <li>&#10003; Custom Design</li>
+            <li>&#10003; Contact Form</li>
+            <li>&#10003; Basic SEO Setup</li>
+            <li>&#10003; 1 Month Support</li>
+            <li class="disabled">&#10005; Web App Features</li>
+            <li class="disabled">&#10005; Database Integration</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Get Started</a>
+        </div>
+        <div class="pricing-card featured reveal">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-badge">Professional</div>
+          <div class="pricing-price">
+            <span class="price-currency">&#8377;</span>
+            <span class="price-amount">45,000</span>
+          </div>
+          <p class="pricing-desc">For growing businesses that need a powerful website with advanced features.</p>
+          <ul class="pricing-features">
+            <li>&#10003; Up to 15 Pages</li>
+            <li>&#10003; Premium Custom Design</li>
+            <li>&#10003; CMS / Blog Integration</li>
+            <li>&#10003; Advanced SEO</li>
+            <li>&#10003; Google Analytics</li>
+            <li>&#10003; 3 Months Support</li>
+            <li>&#10003; Speed Optimization</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+        <div class="pricing-card reveal">
+          <div class="pricing-badge">Enterprise</div>
+          <div class="pricing-price">
+            <span class="price-currency">&#8377;</span>
+            <span class="price-amount">Custom</span>
+          </div>
+          <p class="pricing-desc">Full-scale web applications and complex portals for established businesses.</p>
+          <ul class="pricing-features">
+            <li>&#10003; Custom Web Application</li>
+            <li>&#10003; Database &amp; Backend</li>
+            <li>&#10003; User Authentication</li>
+            <li>&#10003; Payment Integration</li>
+            <li>&#10003; Admin Dashboard</li>
+            <li>&#10003; API Development</li>
+            <li>&#10003; 12 Months Support</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TESTIMONIALS ====== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Client Reviews</span>
+        <h2 class="section-title">What Our <span class="gradient-text">Clients Say</span></h2>
+      </div>
+      <div class="reviews-coming-soon reveal">
+        <div class="reviews-icon">&#x1F4AC;</div>
+        <h3>Be the First to Review!</h3>
+        <p>We&rsquo;re just getting started. If we&rsquo;ve worked together, we&rsquo;d love to hear your feedback&nbsp;&mdash; it means the world to us.</p>
+        <div class="reviews-cta-btns">
+          <a href="https://wa.me/917397062976?text=Hi%20KD%20Technologies%2C%20I%20would%20like%20to%20share%20my%20feedback!" target="_blank" class="btn btn-primary">&#x1F4AC; Share on WhatsApp</a>
+          <a href="mailto:kprabu152001@gmail.com?subject=My%20Review%20for%20KD%20Technologies" class="btn btn-outline">&#x2709; Send via Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Start Your <span class="gradient-text">Project Today</span></h2>
+        <p class="section-subtitle">Tell me about your project and I&rsquo;ll get back to you within 24 hours.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <div class="contact-icon">&#x1F4E7;</div>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:kprabu152001@gmail.com">kprabu152001@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#x1F4DE;</div>
+            <div>
+              <strong>Phone</strong>
+              <a href="tel:+917397062976">+91 73970 62976</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#x1F4CD;</div>
+            <div>
+              <strong>Location</strong>
+              <span>Villupuram, Tamil Nadu, India</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#x23F0;</div>
+            <div>
+              <strong>Working Hours</strong>
+              <span>Mon&ndash;Sat, 9:00 AM &ndash; 7:00 PM IST</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/prabu-k001" target="_blank" class="social-btn" aria-label="LinkedIn">in</a>
+            <a href="https://github.com/Kprabu2001" target="_blank" class="social-btn" aria-label="GitHub">GH</a>
+            <a href="mailto:kprabu152001@gmail.com" class="social-btn" aria-label="Email">&#x2709;</a>
+            <a href="https://wa.me/917397062976" target="_blank" class="social-btn" aria-label="WhatsApp">WA</a>
+          </div>
+        </div>
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required />
+            <span class="form-error" id="nameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required />
+            <span class="form-error" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Required</label>
+            <select id="service" name="service">
+              <option value="">&mdash; Select a Service &mdash;</option>
+              <option value="api">REST API Development</option>
+              <option value="webapp">Full Stack Web App</option>
+              <option value="frontend">Responsive Frontend</option>
+              <option value="database">Database Design</option>
+              <option value="auth">Auth &amp; Security</option>
+              <option value="devops">Deployment &amp; DevOps</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="budget">Budget Range</label>
+            <select id="budget" name="budget">
+              <option value="">&mdash; Select Budget &mdash;</option>
+              <option value="under15k">Under &#8377;15,000</option>
+              <option value="15k-45k">&#8377;15,000 &ndash; &#8377;45,000</option>
+              <option value="45k-1l">&#8377;45,000 &ndash; &#8377;1,00,000</option>
+              <option value="above1l">Above &#8377;1,00,000</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="message">Project Details *</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, goals, and timeline..." required></textarea>
+            <span class="form-error" id="messageError"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+            Send Message &#x1F680;
+          </button>
+          <div class="form-success" id="formSuccess">
+            ✅ Message sent! I'll get back to you within 24 hours.
+          </div>
+          <div class="form-error-msg" id="formError"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}
