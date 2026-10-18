@@ -17,7 +17,7 @@ services:
       - key: BREVO_SENDER_NAME
         value: "KD Technologies"
       - key: CONTACT_RECEIVER_EMAIL
-        value: "kprabu152001@gmail.com"
+        value: "kprabu1512@gmail.com"
       - key: CONTACT_RECEIVER_NAME
         value: "KD Technologies Team"
       - key: BREVO_SEND_AUTO_REPLY
