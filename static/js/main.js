@@ -194,44 +194,84 @@ const successMsg = document.getElementById('formSuccess');
 const errorMsg   = document.getElementById('formError');
 
 // Primary endpoint: KD Technologies Django Backend with Brevo Transactional Email
-const DJANGO_API_ENDPOINT = (window.location.protocol.startsWith('http') && window.location.port === '8000')
-  ? '/api/contact/'
-  : (window.location.protocol.startsWith('http') ? '/api/contact/' : 'http://127.0.0.1:8000/api/contact/');
+// If running on port 8000 (Django default) or a deployed site, use relative path; otherwise call localhost:8000
+const isSameOriginDjango = (window.location.port === '8000') ||
+  (!window.location.port && window.location.protocol.startsWith('http') && !['127.0.0.1', 'localhost'].includes(window.location.hostname));
+const DJANGO_API_ENDPOINT = isSameOriginDjango ? '/api/contact/' : 'http://127.0.0.1:8000/api/contact/';
 
 // Fallback endpoint: Formspree (used if local Django server is offline)
 const FORMSPREE_BACKUP_ENDPOINT = 'https://formspree.io/f/xvgaqrzn';
 
 function validateField(input, errorId) {
   const error = document.getElementById(errorId);
-  if (!input.value.trim()) {
+  if (!input || !error) return true;
+
+  const val = input.value.trim();
+
+  if (!val) {
     input.classList.add('error');
     error.textContent = 'This field is required.';
     return false;
   }
-  if (input.type === 'email') {
+
+  if (input.id === 'name' && val.length < 2) {
+    input.classList.add('error');
+    error.textContent = 'Name must be at least 2 characters.';
+    return false;
+  }
+
+  if (input.type === 'email' || input.id === 'email') {
     const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailReg.test(input.value.trim())) {
+    if (!emailReg.test(val)) {
       input.classList.add('error');
       error.textContent = 'Please enter a valid email address.';
       return false;
     }
   }
+
+  if (input.id === 'message' && val.length < 3) {
+    input.classList.add('error');
+    error.textContent = 'Message must be at least 3 characters.';
+    return false;
+  }
+
   input.classList.remove('error');
   error.textContent = '';
   return true;
 }
 
-// Live validation on blur
-document.getElementById('name').addEventListener('blur', () => validateField(document.getElementById('name'), 'nameError'));
-document.getElementById('email').addEventListener('blur', () => validateField(document.getElementById('email'), 'emailError'));
-document.getElementById('message').addEventListener('blur', () => validateField(document.getElementById('message'), 'messageError'));
+// Live validation on input & blur for all key fields
+['name', 'email', 'message'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('input', () => {
+      el.classList.remove('error');
+      const errEl = document.getElementById(id + 'Error');
+      if (errEl) errEl.textContent = '';
+      if (errorMsg) errorMsg.classList.remove('show');
+    });
+    el.addEventListener('blur', () => validateField(el, id + 'Error'));
+  }
+});
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const nameOk    = validateField(document.getElementById('name'),    'nameError');
-  const emailOk   = validateField(document.getElementById('email'),   'emailError');
-  const messageOk = validateField(document.getElementById('message'), 'messageError');
-  if (!nameOk || !emailOk || !messageOk) return;
+
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+
+  const nameOk    = validateField(nameInput,    'nameError');
+  const emailOk   = validateField(emailInput,   'emailError');
+  const messageOk = validateField(messageInput, 'messageError');
+
+  if (!nameOk || !emailOk || !messageOk) {
+    if (errorMsg) {
+      errorMsg.textContent = '⚠️ Please correct the highlighted errors above.';
+      errorMsg.classList.add('show');
+    }
+    return;
+  }
 
   submitBtn.textContent = 'Sending… ⏳';
   submitBtn.disabled = true;
@@ -239,11 +279,11 @@ form.addEventListener('submit', async (e) => {
   if (errorMsg) errorMsg.classList.remove('show');
 
   const payload = {
-    name: document.getElementById('name').value.trim(),
-    email: document.getElementById('email').value.trim(),
+    name: nameInput.value.trim(),
+    email: emailInput.value.trim(),
     service: document.getElementById('service') ? document.getElementById('service').value : '',
     budget: document.getElementById('budget') ? document.getElementById('budget').value : '',
-    message: document.getElementById('message').value.trim(),
+    message: messageInput.value.trim(),
   };
 
   try {
@@ -259,6 +299,11 @@ form.addEventListener('submit', async (e) => {
         },
         body: JSON.stringify(payload)
       });
+
+      // If endpoint returned 404 on secondary server, fall back to Formspree
+      if (response.status === 404) {
+        throw new Error('Endpoint 404 on ' + DJANGO_API_ENDPOINT);
+      }
     } catch (netErr) {
       // Local Django server not running -> fallback to Formspree
       console.warn('Django Brevo backend unreachable. Using backup endpoint...', netErr);
@@ -274,11 +319,13 @@ form.addEventListener('submit', async (e) => {
     if (usingFallback) {
       if (response.ok) {
         form.reset();
+        document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+        document.querySelectorAll('.contact-form input, .contact-form textarea').forEach(el => el.classList.remove('error'));
         successMsg.textContent = "✅ Message sent! I'll get back to you within 24 hours.";
         successMsg.classList.add('show');
         setTimeout(() => successMsg.classList.remove('show'), 6000);
       } else {
-        const json = await response.json();
+        const json = await response.json().catch(() => ({}));
         if (errorMsg) {
           errorMsg.textContent = json?.errors?.map(e => e.message).join(', ') || 'Something went wrong. Please try again.';
           errorMsg.classList.add('show');
@@ -286,14 +333,34 @@ form.addEventListener('submit', async (e) => {
         }
       }
     } else {
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
       if (response.ok && result.success) {
         form.reset();
+        document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+        document.querySelectorAll('.contact-form input, .contact-form textarea').forEach(el => el.classList.remove('error'));
         successMsg.textContent = result.message || "✅ Message sent successfully! Check your inbox for confirmation.";
         successMsg.classList.add('show');
         setTimeout(() => successMsg.classList.remove('show'), 6000);
       } else {
-        const errText = result.error || (result.field_errors ? Object.values(result.field_errors).join(', ') : 'Something went wrong. Please try again.');
+        // Clear previous field errors
+        document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+        document.querySelectorAll('.contact-form input, .contact-form textarea').forEach(el => el.classList.remove('error'));
+
+        let errorList = [];
+        if (result.field_errors && typeof result.field_errors === 'object') {
+          Object.entries(result.field_errors).forEach(([field, msg]) => {
+            const inputEl = document.getElementById(field);
+            const errEl = document.getElementById(field + 'Error');
+            if (inputEl) inputEl.classList.add('error');
+            if (errEl) errEl.textContent = msg;
+            errorList.push(msg);
+          });
+        }
+
+        const errText = errorList.length > 0
+          ? `⚠️ ${errorList.join(' • ')}`
+          : (result.error || 'Validation failed. Please correct the errors and try again.');
+
         if (errorMsg) {
           errorMsg.textContent = errText;
           errorMsg.classList.add('show');

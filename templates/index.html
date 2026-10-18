@@ -394,10 +394,10 @@
             <a href="https://wa.me/917397062976" target="_blank" class="social-btn" aria-label="WhatsApp">WA</a>
           </div>
         </div>
-        <form class="contact-form reveal" id="contactForm" novalidate>
+        <form class="contact-form reveal" id="contactForm" action="/api/contact/" method="POST" novalidate>
           <div class="form-group">
             <label for="name">Your Name *</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" required />
+            <input type="text" id="name" name="name" placeholder="John Doe" minlength="2" required />
             <span class="form-error" id="nameError"></span>
           </div>
           <div class="form-group">
@@ -429,7 +429,7 @@
           </div>
           <div class="form-group full-width">
             <label for="message">Project Details *</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, goals, and timeline..." required></textarea>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, goals, and timeline..." minlength="3" required></textarea>
             <span class="form-error" id="messageError"></span>
           </div>
           <button type="submit" class="btn btn-primary btn-full" id="submitBtn">

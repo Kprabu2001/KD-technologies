@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: kd-technologies
+    runtime: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn core.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: BREVO_API_KEY
+        sync: false
+      - key: BREVO_SENDER_EMAIL
+        value: "kprabu152001@gmail.com"
+      - key: BREVO_SENDER_NAME
+        value: "KD Technologies"
+      - key: CONTACT_RECEIVER_EMAIL
+        value: "kprabu152001@gmail.com"
+      - key: CONTACT_RECEIVER_NAME
+        value: "KD Technologies Team"
+      - key: BREVO_SEND_AUTO_REPLY
+        value: "true"
