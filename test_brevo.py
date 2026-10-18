@@ -13,9 +13,9 @@ env_path = Path(__file__).resolve().parent / '.env'
 load_dotenv(env_path)
 
 api_key = os.getenv('BREVO_API_KEY', '')
-sender_email = os.getenv('BREVO_SENDER_EMAIL', 'kprabu152001@gmail.com')
+sender_email = os.getenv('BREVO_SENDER_EMAIL', 'kprabu1512@gmail.com')
 sender_name = os.getenv('BREVO_SENDER_NAME', 'KD Technologies')
-receiver_email = os.getenv('CONTACT_RECEIVER_EMAIL', sender_email)
+receiver_email = os.getenv('CONTACT_RECEIVER_EMAIL', 'kprabu152001@gmail.com')
 
 print("=" * 50)
 print("KD Technologies — Brevo API Verification")

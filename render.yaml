@@ -13,7 +13,7 @@ services:
       - key: BREVO_API_KEY
         sync: false
       - key: BREVO_SENDER_EMAIL
-        value: "kprabu152001@gmail.com"
+        value: "kprabu1512@gmail.com"
       - key: BREVO_SENDER_NAME
         value: "KD Technologies"
       - key: CONTACT_RECEIVER_EMAIL

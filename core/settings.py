@@ -119,7 +119,7 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 
 # ── BREVO EMAIL CONFIGURATION ───────────────────────────
 BREVO_API_KEY = os.getenv('BREVO_API_KEY', '')
-BREVO_SENDER_EMAIL = os.getenv('BREVO_SENDER_EMAIL', 'kprabu152001@gmail.com')
+BREVO_SENDER_EMAIL = os.getenv('BREVO_SENDER_EMAIL', 'kprabu1512@gmail.com')
 BREVO_SENDER_NAME = os.getenv('BREVO_SENDER_NAME', 'KD Technologies')
 CONTACT_RECEIVER_EMAIL = os.getenv('CONTACT_RECEIVER_EMAIL', 'kprabu152001@gmail.com')
 CONTACT_RECEIVER_NAME = os.getenv('CONTACT_RECEIVER_NAME', 'KD Technologies Team')
